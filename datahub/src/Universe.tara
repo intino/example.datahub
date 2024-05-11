@@ -1,0 +1,57 @@
+dsl Ness
+
+Namespace universe
+	Message Place as Assertion
+		Attribute label as Text
+		Attribute area as Text
+		Attribute coordinates as Text
+		Attribute timeOffset as Integer
+		Attribute region as Text
+		Attribute city as Text
+		Attribute address as Text
+		Attribute postalCode as Text
+
+	Message Area as Assertion
+		Attribute label as Text
+
+	Message Element as Assertion
+		Attribute label as Text
+		Attribute place as Text
+		Attribute team as Text
+
+	Message Person as ExtensionOf(Element)
+		Attribute area as Text
+		Attribute role as Text
+		Attribute supervisor as Text
+		Attribute email as Text
+		Attribute phone as Text
+
+	Message Hardware as ExtensionOf(Element)
+		Attribute sn as Text
+		Attribute ip as Text List
+		Attribute publicIp as Text
+
+	Message Appliance as ExtensionOf(Hardware)
+
+	Message Computer as ExtensionOf(Hardware)
+		Attribute architecture as Text
+		Attribute os as Text
+		Attribute cores as Integer
+		Attribute diskSize as LongInteger  //MB
+		Attribute memorySize as LongInteger //MB
+		Attribute maxOpenFiles as LongInteger
+		Attribute jvm as Text
+		Attribute isp as Text
+
+	Message Software as ExtensionOf(Element)
+
+	Message Application as ExtensionOf(Software)
+		Attribute name as Text
+		Attribute systemService as Text
+		Attribute user as Text
+		Attribute startingTime as DateTime
+		Attribute pids as Integer List
+		Attribute commandLine as Text
+
+	Message Service as ExtensionOf(Software)
+		Attribute url as Text

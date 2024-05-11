@@ -1,0 +1,41 @@
+dsl Ness
+
+Namespace messaging
+	Message Notification
+		Attribute id as Text
+		Attribute type as Text
+		Attribute channel as Word("Email" "Push")
+		Attribute language as Word("en" "es" "pt")
+		Component(multiple=false) Recipient
+			Attribute email as Text
+			Attribute deviceToken as Text
+			Attribute cc as Text List
+			Attribute bcc as Text List
+
+
+Namespace analysis
+	Sensor Analysis
+		Magnitude("availability") availability > Attribute("100") max; Attribute("0") min; Attribute("%") unit;Attribute("avg") operator; Attribute("DOWN") tail; Attribute("Poisson") distribution;
+		Magnitude("health") health > Attribute("100") max; Attribute("0") min; Attribute("%") unit;Attribute("%,.0f") format; Attribute("avg") operator; Attribute("DOWN") tail; Attribute("Poisson") distribution;
+		Magnitude("risk") risk > Attribute("100") max; Attribute("0") min; Attribute("%") unit;Attribute("%,.0f") format; Attribute("avg") operator; Attribute("UP") tail; Attribute("Poisson") distribution;
+
+
+Namespace monitoring
+	Resource Log
+
+	Message Status
+		Attribute observable as Text
+		Attribute group as Text
+		Attribute signals as Text List
+
+	Message Incident
+		Attribute id as Text
+		Attribute observable as Text
+		Attribute origin as Word("Manual" "Auto")
+		Attribute level as Word("Low" "Medium" "High")
+
+	Sensor Computer
+		Magnitude("usage.RAM") usageRAM > Attribute("MB") unit; Attribute("%,.2f") format; Attribute("avg") operator; Attribute("UP") tail; Attribute("Normal") distribution;
+		Magnitude("usage.HDD") usageHDD > Attribute("MB") unit; Attribute("%,.2f") format; Attribute("avg") operator; Attribute("UP") tail; Attribute("Normal") distribution
+		Magnitude("usage.CPU") usageCPU > Attribute("%") unit; Attribute("%,.2f") format; Attribute("avg") operator; Attribute("UP") tail; Attribute("Normal") distribution;
+

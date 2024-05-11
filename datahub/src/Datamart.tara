@@ -1,0 +1,75 @@
+dsl Ness
+
+use Events
+use Datalake
+
+Datamart master
+	Snapshots(scale = Day)
+	Timeline(Object) Analysis as Raw(dl.analysis) Indicator
+	Timeline(Object) incidents as Cooked Indicator
+		TimeSeries(dl.incident, monitoring.Incident.observable) pendingIncidents as Count
+			Attribute("Pending incidents") label;Attribute("%d") format; Attribute("avg") operator; Attribute("Up") tail; Attribute("Poisson") distribution;
+
+	Reel(tank = dl.status, entity = Object, signals = monitoring.Status.signals, groupSource = monitoring.Status.group, entitySource = monitoring.Status.observable) ObservableReel
+
+	Entity(dl.place) Place
+		Attribute label as Text
+		Attribute coordinates as Text
+		Attribute timeOffset as Integer
+		Attribute region as Text
+		Attribute city as Text
+		Attribute area as Entity(Area)
+		Attribute address as Text
+		Attribute postalCode as Text
+
+	Entity(dl.area) Area > Attribute label as Text
+
+
+
+	Entity Object as Abstract
+		Attribute label as Text
+		Attribute place as Entity(Place)
+		Attribute team as Text
+		Attribute container as Entity(Object)
+		Attribute observer as Entity(Object)
+		Attribute responsible as Entity(Person)
+		Attribute tags as Text List
+
+
+	Entity(dl.person) Person as ExtensionOf(Object)
+		Attribute area as Entity(Area)
+		Attribute role as Text
+		Attribute supervisor as Entity(Person)
+		Attribute email as Text
+		Attribute phone as Text
+
+	Entity(dl.hardware) Hardware as ExtensionOf(Object)
+		Attribute sn as Text
+		Attribute ip as Text
+		Attribute publicIp as Text
+
+	Entity(dl.appliance) Appliance as ExtensionOf(Hardware)
+
+	Entity(dl.computer) Computer as ExtensionOf(Hardware)
+		Attribute architecture as Text
+		Attribute os as Text
+		Attribute cores as Integer
+		Attribute diskSize as Long  //MB
+		Attribute memorySize as Long //MB
+		Attribute processes as Integer
+		Attribute maxOpenFiles as Long
+		Attribute jvm as Text
+		Attribute isp as Text
+
+	Entity(dl.software) Software as ExtensionOf(Object)
+	Entity(dl.service) Service as ExtensionOf(Software)
+		Attribute url as Text
+
+	Entity(dl.application) Application as ExtensionOf(Software)
+		Attribute name as Text
+		Attribute user as Text
+		Attribute systemService as Text
+		Attribute startingTime as DateTime
+		Attribute pid as Integer
+		Attribute commandLine as Text
+		Attribute state as Word("NEW" "RUNNING" "SLEEPING" "WAITING" "ZOMBIE" "STOPPED" "OTHER" "INVALID" "SUSPENDED")

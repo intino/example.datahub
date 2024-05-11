@@ -1,0 +1,16 @@
+dsl Ness
+
+use Datamart
+use Datalake
+
+Broker(empty, 63000, 1884)
+	User("test", "test")
+	Bridge(topics = "example.topic1") > ExternalBus("tcp://localhost:62000", "test", "test", "test-bridge1")
+
+Terminal test-terminal
+	Publish(dl.status dl.incident dl.place dl.area)
+	Subscribe(dl.status dl.incident)
+	Datamarts(master)
+
+Terminal external-terminal
+	Subscribe(dl.status dl.incident)

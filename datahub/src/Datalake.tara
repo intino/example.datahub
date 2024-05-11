@@ -1,0 +1,22 @@
+dsl Ness
+
+use Universe
+use Events
+
+Datalake(scale = Day, path = "{datalake}") dl
+	Seal > Cron(pattern = "0 0 4 1/1 * ? *", timeZone = empty)
+	Tank analysis as Measurement(analysis.Analysis, 5, Minute)
+	Tank log as Resource(monitoring.Log)
+	Tank status as Message(monitoring.Status)
+	Tank incident as Message(monitoring.Incident)
+	Tank place as Message(universe.Place)
+	Tank area as Message(universe.Area)
+	Tank person as Message(universe.Person)
+	Tank hardware as Message(universe.Hardware)
+	Tank computer as Message(universe.Computer)
+	Tank appliance as Message(universe.Appliance)
+	Tank software as Message(universe.Software)
+	Tank application as Message(universe.Application)
+	Tank service as Message(universe.Service)
+	Tank notification as Message(messaging.Notification)
+
