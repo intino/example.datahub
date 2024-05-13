@@ -1,11 +1,9 @@
 
 # Intino Datahub Example
 
-DataHub is a software platform that facilitates the creation, management, and distribution of events in event-driven systems. Using a domain-specific language (DSL), DataHub allows users to tailor their architecture to meet specific business needs, enhancing the integration and operability of real-time data systems.
+Ness is a software platform that facilitates the creation, management, and distribution of events in event-driven systems. Using a domain-specific language (DSL), DataHub allows users to tailor their architecture to meet specific business needs, enhancing the integration and operability of real-time data systems.
 
 ## Starter code
-The parameters
-
 The main code (Main) of DataHub is responsible for initializing and configuring the platform. Here is the code:
 
     public static void main(String[] args) {
@@ -32,8 +30,6 @@ This code performs the following actions:
  - Box Start: The box is started.
  - Shutdown Management: A shutdown hook is added to stop the box properly when the program finishes.
 
-
-
 ## Features
 The platform includes a set of features that make it useful for various applications:
 
@@ -47,7 +43,7 @@ The platform includes a set of features that make it useful for various applicat
 We welcome any contributions to improve DataHub! If you wish to contribute, please follow the steps in our contribution document.
 
 ## License
-DataHub is licensed under the MIT License.
+Ness is licensed under the [MIT License](https://mit-license.org/).
 
 Follow the link for more information:
 https://intino.systems/wiki/index.php?title=Datahub
