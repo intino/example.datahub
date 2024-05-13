@@ -19,7 +19,7 @@ The main code (Main) of DataHub is responsible for initializing and configuring 
     }
 
 This code performs the following actions:
- - Initial Configuration: An instance of DataHubConfiguration is created using the arguments provided to the program. This must be provided in the format "name"="value". The arguments are:
+ - Initial Configuration: An instance of DataHubConfiguration is created using the arguments provided to the program in the format "name"="value". The arguments are:
    - home (required): Specifies the directory where DataHub will store its files.
    - broker_port (required): Specifies the port for the JMS OpenWire protocol.
    - broker_secondary_port (required): Specifies the port for the MQTT protocol.
