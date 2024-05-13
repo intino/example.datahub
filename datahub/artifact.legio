@@ -7,11 +7,11 @@ Artifact("io.intino.examples", "1.0.0") datahub
 	Package(mode = ModulesAndLibrariesLinkedByManifest)
 	Parameter("home")
 	Parameter("broker_port")
+	Parameter("broker_secondary_port")
 	Parameter("keystore_password")
 	Parameter("keystore_path")
 	Parameter("backup_directory")
 	Parameter("truststore_password")
-	Parameter("broker_secondary_port")
 	Parameter("truststore_path")
 
 RunConfiguration local
